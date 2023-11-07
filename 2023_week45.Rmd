@@ -1,0 +1,25 @@
+---
+title: "TidyTuesday_23_11_7"
+author: "LBE"
+date: "2023-11-06"
+output: html_document
+---
+
+# Setup
+```{r}
+library(tidyverse)
+library(tidytuesdayR)
+
+tuesdata <- tidytuesdayR::tt_load(2023, week = 45)
+house <- tuesdata$house
+```
+
+# Explore
+
+Let's explore todays data and see what we have! Only instructions this week are to stay clear of **causation**, fair enough!
+
+```{r}
+
+tuesdata
+
+```
