@@ -2,7 +2,7 @@
 title: "TidyTuesday_23_11_7"
 author: "LBE"
 date: "2023-11-06"
-output: html_document
+output: md_document
 ---
 
 # Setup
@@ -138,7 +138,7 @@ img2 = image_read("../data/R.jpg")
          plot.subtitle = element_textbox_simple())
      
  )
-
+spoiler_elections
 TT_week45 <-  ggbackground(spoiler_elections, "../data/bg.jpg")
 
 
