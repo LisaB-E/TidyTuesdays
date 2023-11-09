@@ -142,9 +142,9 @@ spoiler_elections
 TT_week45 <-  ggbackground(spoiler_elections, "../data/bg.jpg")
 ```
 ## Final Figure
-There we go, final figure! 
-What I like: Answers the questions, in a simple way
-What I don't like: It's a bit boring?
+There we go, final figure!  
+**What I like:** Answers the questions, in a simple way  
+**What I don't like:** It's a bit boring?  
 
 ``` {r Week45_figure}
 ggsave("../figures/TT_week45.jpg", plot = TT_week45)
