@@ -1,0 +1,72 @@
+---
+title: "2023_week46"
+author: "LBE"
+date: "2023-11-16"
+output: html_document
+---
+# Week 46
+
+## setup
+```{r}
+library(tidyverse)
+library(tidytuesdayR)
+library(janitor)
+
+library(ggpubr)
+library(ggimage)
+library(png)
+library(ggtext)
+library(patchwork)
+
+tuesdata <- tidytuesdayR::tt_load(2023, week = 46)
+diwali <- tuesdata$diwali_sales_data
+```
+
+## Explore [start 14:28]
+
+```{r}
+diwali_sales <- diwali %>% 
+  clean_names() %>% 
+  dplyr::group_by(gender, product_category) %>% 
+  summarise(ttl_spend = sum(amount, na.rm = T),
+            avg_spend = mean(amount, na.rm = T))
+
+diwali_sales
+
+
+# ----- This section prepare a dataframe for labels ---- #
+# Get the name and the y position of each label
+label_data <- diwali_sales %>% 
+  dplyr::group_by(gender, product_category) %>% 
+  summarise(tot = sum(ttl_spend)) %>% 
+  dpluyrmutate
+ 
+# calculate the ANGLE of the labels
+number_of_bar <- nrow(label_data)
+angle <-  90 - 360 * (label_data$id-0.5) /number_of_bar     # I substract 0.5 because the letter must have the angle of the center of the bars. Not extreme right(1) or extreme left (0)
+ 
+# calculate the alignment of labels: right or left
+# If I am on the left part of the plot, my labels have currently an angle < -90
+label_data$hjust<-ifelse( angle < -90, 1, 0)
+ 
+# flip angle BY to make them readable
+label_data$angle<-ifelse(angle < -90, angle+180, angle)
+# ----- ------------------------------------------- ---- #
+
+
+ggplot(data = diwali_sales, aes(x=product_category, y=ttl_spend, fill = gender))+
+  geom_bar(stat = "identity")+
+  ylim (-10000000,20000000)+
+   theme_minimal() +
+   theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(rep(-2,4), "cm")) +
+   coord_polar(start = 0)+
+  geom_text(data=label_data, aes(x=id, y=tot+10, label=product_category, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=2.5, angle= label_data$angle, inherit.aes = FALSE )
+ 
+  
+
+```
+

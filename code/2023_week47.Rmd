@@ -1,0 +1,37 @@
+---
+title: "2023_weekTemplate"
+author: "LBE"
+date: "2023-11-22"
+output: md_document
+---
+
+# Week 47
+
+## Setup
+
+```{r}
+library(tidytuesdayR)
+library(tidyverse)
+library(jsonlite)
+
+
+tuesdata <- tidytuesdayR::tt_load(2023, week = 47)
+rladies_chapters <- tuesdata$rladies_chapters 
+
+rladies_top25 <- readr::read_csv('https://raw.githubusercontent.com/RLadies-Chapters-Making-Talks-Work-for-Diverse-Audiences/data
+/top25_attendees.csv')
+
+
+```
+
+## Explore [start hh:mm]
+
+```{r}
+
+```
+
+## Final Plot [start hh:mm]
+
+```{r}
+
+```
