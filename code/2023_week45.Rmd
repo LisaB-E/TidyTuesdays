@@ -151,7 +151,7 @@ There we go, final figure!
 **What I don't like:** It's a bit boring?  
 
 ``` {r Week45_figure}
-ggsave("../figures/TT_week45.jpg", plot = TT_week45)
+ggsave("../figures/week_45.jpg", plot = TT_week45)
 
 TT_week45
 
