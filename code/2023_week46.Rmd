@@ -38,8 +38,7 @@ diwali_sales
 # Get the name and the y position of each label
 label_data <- diwali_sales %>% 
   dplyr::group_by(gender, product_category) %>% 
-  summarise(tot = sum(ttl_spend)) %>% 
-  dpluyrmutate
+  summarise(tot = sum(ttl_spend))
  
 # calculate the ANGLE of the labels
 number_of_bar <- nrow(label_data)
