@@ -11,6 +11,6 @@ Playing with datavis every Tuesday, using R4DS data. I set a timelimit (usually 
     <img src="figures/week_48.jpg" width="600" height="600"/>
     
 -   [Week02](code/2023_week02.md): NHL PLayer Birthdays\
-<img src="figures/TT24_week01.jpg" width="600" height="600"/>
+<img src="figures/TT24_week02.jpg" width="600" height="600"/>
 
 
