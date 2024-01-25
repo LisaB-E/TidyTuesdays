@@ -1,0 +1,98 @@
+---
+title: "2023_week49"
+author: "LBE"
+date: "2023-12-06"
+output: md_document
+---
+
+# *Week* 49
+
+
+
+## **Setup**
+
+```{r}
+library(tidytuesdayR)
+library(tidyverse)
+library(readr)
+library(wesanderson)
+library(ggrepel)
+library(ggtext)
+
+tuesdata <- tidytuesdayR::tt_load(2023, week = 49) #fail
+tuesdata <- tidytuesdayR::tt_load('2023-12-05') #fail
+
+life_expectancy_different_ages <- read_csv("../data/life_expectancy_different_ages.csv")
+life_expectancy <- read_csv("../data/life_expectancy.csv")
+```
+
+## Explore [start hh:mm]
+
+```{r}
+
+life_exp <- life_expectancy %>% 
+  clean_names() %>% 
+  rename("life_exp" = "life_expectancy") %>% 
+  group_by(entity) %>% 
+  mutate(name_lab = if_else(year == max(year), entity, NA))
+```
+
+## First Plot
+
+```{r}
+plot1 <- ggplot(life_exp, aes(x = year, y = life_exp))+
+   # geom_point(shape = 21, alpha =0.1, show.legend = F, fill = NA, colour = "gray50")+
+   geom_line(colour = "gray80", alpha = 0.2)+
+theme_classic()+
+  theme(legend.position = "none")
+```
+ok clearly we can't show all the data - too messy. How about highlighting some countries based on criteria? Can I make it interactive?
+
+```{r}
+powerful_5 <- c("USA", "CHN", "RUS", "DEU", "GBR")
+richest_GDP_5 <- c("IRL", "LUX", "SGP", "QAT", "MAC")
+poorest_PPP_5 <- c("BDI", "CAF", "COD", "SOM", "MOZ")
+healthiest_BGHI <- c("ESP", "ITA", "ISL", "JPN", "CHE")
+
+selections <- tibble(subset_ctr = c(rep(c("powerful_5", "richest_GDP_5", "poorest_PPP_5", "healthiest_BGHI"), each=5)), code=c(powerful_5,richest_GDP_5, poorest_PPP_5, healthiest_BGHI)) 
+  
+life_exp_sel <- life_exp %>% 
+  full_join(x = ., y = selections)
+
+colours <- c("#AD2D30", "#CB7A54", "#D08E2A", "#76A975", "#4B9ED2")
+colours <- wes_palette("Darjeeling1")
+test <- subset(life_exp, code == "GBR")
+
+plot1 +
+  geom_line(data = subset(life_exp_sel, subset_ctr == "powerful_5"),
+            aes(colour = entity), linewidth = 1.5, lineend = "round", alpha = 0.6)+
+  geom_text_repel(data = subset(life_exp_sel, subset_ctr == "powerful_5"),
+                  aes(colour = entity, label = name_lab),
+                  na.rm = T,
+                  direction = "y",
+                  max.iter = 10,
+                  xlim = c(2040,NA),
+                  hjust = 0,
+                  segment.size = .7,
+                  segment.alpha = .5,
+                  segment.linetype = "dotted",
+                  box.padding = 0,
+                  segment.curvature = -0.1,
+                  segment.ncp = 3,
+                  segment.angle = 20)+
+  labs(y = "Life Expectancy (years)", x = "Year")+
+  theme(panel.background = element_rect(fill = "#10283E"),
+        plot.background = element_rect(fill = "#10283E"),
+        axis.line = element_line(colour = "gray85"),
+        axis.ticks = element_line(colour = "gray85"),
+        axis.text = element_text(family = "Arial", size = 10, colour = "gray85"),
+        axis.title = element_text(family = "Arial", size = 12, face = "bold", colour = "gray85"),
+        # panel.border = element_rect(colour = "gray85", fill = NA),
+        plot.margin = margin(20,100,20,40))+
+  scale_colour_manual(values = colours)+
+  coord_cartesian(clip = "off", xlim = c(1540,2090))+
+  scale_x_continuous(
+    expand = c(0.01, 0),
+    limits = c(NA, 2030)) 
+
+```

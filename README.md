@@ -9,3 +9,8 @@ Playing with datavis every Tuesday, using R4DS data. I set a timelimit (usually 
 
 -   [Week48](code/2023_week48.md): DrWho Episodes\
     <img src="figures/week_48.jpg" width="600" height="600"/>
+    
+-   [Week02](code/2023_week02.md): NHL PLayer Birthdays\
+<img src="figures/TT24_week01.jpg" width="600" height="600"/>
+
+
