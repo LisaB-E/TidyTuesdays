@@ -59,7 +59,7 @@ path <- "../data/pic2.png"
 library(png)
 pic <- grid::rasterGrob(readPNG(path, native = T))
 
-sub <- "<br>**The 6-month advantage:** A higher proportion NHL players are <span style = 'color:slateblue;'>**born in the first 5 months**</span> than would be expected based on the national average. Conversely, the <span style = 'color:darkorange;'>**last 5 months of the year**</span> have less player birthdays than what would be expected. June and July birthdays are exactly what you would expect from average birthrates.<br><br><br>"
+sub <- "<br>**The 5-month advantage:** A higher proportion NHL players are <span style = 'color:slateblue;'>**born in the first 5 months**</span> than would be expected based on the national average. Conversely, the <span style = 'color:darkorange;'>**last 5 months of the year**</span> have less player birthdays than what would be expected. June and July birthdays are exactly what you would expect from average birthrates.<br><br><br>"
 caption <- ("Data from **R4DS TidyTuesday Week 02**, via **Statistics Canada** and the **NHL**")
 
 nhl_diff <- nhl_births %>%
