@@ -46,7 +46,7 @@ nhl_births <- tuesdata$nhl_player_births %>%
 
 ## Final Plot [start hh:mm]
 
-```{r}
+```{r, 'first plot'}
 ggplot(nhl_births, aes(x = month, y = prop, fill = source)) +
   geom_point(shape = 21)+
   geom_line(aes(colour = source))+
@@ -54,7 +54,7 @@ ggplot(nhl_births, aes(x = month, y = prop, fill = source)) +
 ```
 Cool, but I think we don't actually need the canada births, just whether the number of birthdays in each month of NHL data is above or below the national average, rigth?
 
-```{r}
+```{r, 'final plot'}
 path <- "../data/pic2.png"
 library(png)
 pic <- grid::rasterGrob(readPNG(path, native = T))
@@ -97,5 +97,5 @@ nhl_diff
 TT_week01 <-  ggbackground(nhl_diff, "../data/sports background.png")
 TT_week01
 
-ggsave("../figures/TT24_week01.jpg", width = 21, height = 20, units = "cm")
+ggsave("../figures/TT24_week02.jpg", width = 21, height = 20, units = "cm")
 ```
