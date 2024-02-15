@@ -16,5 +16,8 @@ Playing with datavis every Tuesday\*, using R4DS data. I set a time limit (usual
 
 # 2024
 
--   [Week02](code/2024_week02.md): NHL Player Birthdays\
+-   JANUARY - [Week02](code/2024_week02.md): NHL Player Birthdays\
     <img src="figures/TT24_week02.jpg" width="600" height="600"/>
+
+-   FEBRUARY - [Week 04](code/2024_week05.md): Groundhog Day Predictions (work in progress)\
+    <img src="figures/TT_week05.jpg" width="600"/>
