@@ -20,4 +20,4 @@ Playing with datavis every Tuesday\*, using R4DS data. I set a time limit (usual
     <img src="figures/TT24_week02.jpg" width="600" height="600"/>
 
 -   FEBRUARY - [Week 04](code/2024_week05.md): Groundhog Day Predictions (work in progress)\
-    <img src="figures/TT_week05.jpg" width="600"/>
+    <img src="figures/TT_Week05.jpg" width="600"/>
